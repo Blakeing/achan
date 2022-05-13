@@ -1,25 +1,21 @@
 {
-  "name": "keystone-6-railway-example",
-  "version": "1.0.0",
-  "description": "A simple example project showing how you might deploy Keystone 6 to Railway",
-  "main": "keystone.ts",
-  "repository": "git@github.com:keystonejs/keystone-6-railway-example.git",
-  "author": "John Molomby <john@thinkmill.com.au>",
-  "license": "MIT",
   "private": true,
-  "engines": {
-    "node": "^14.15 || ^16.13"
-  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "packageManager": "yarn@1.22.17",
   "scripts": {
-    "dev": "keystone dev",
-    "start": "keystone start",
-    "build": "keystone build && keystone prisma migrate deploy"
-  },
-  "dependencies": {
-    "@keystone-6/auth": "^1.0.0",
-    "@keystone-6/core": "^1.0.0"
+    "build": "turbo run build",
+    "dev": "turbo run dev --no-cache --parallel --continue",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "typescript": "^4.5.2"
+    "eslint": "^7.32.0",
+    "prettier": "^2.5.1",
+    "turbo": "latest"
   }
 }
